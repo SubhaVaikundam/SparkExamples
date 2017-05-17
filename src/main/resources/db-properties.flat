@@ -1,0 +1,3 @@
+jdbcUrl=jdbc:mysql://localhost:3306/sparkour
+user=root
+password=root
