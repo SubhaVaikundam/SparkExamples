@@ -1,0 +1,25 @@
+package sparkWCExample.sparkWCExample;
+
+import au.com.bytecode.opencsv.CSVReader;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+
+import java.io.StringReader;
+
+public class LoadCSVJavaExample implements Function<String, String[]> {
+
+    public static void main(String[] args) {
+        SparkConf conf = new SparkConf().setAppName("MyLoadCSVJavaExampleApp").setMaster("local[*]");
+        JavaSparkContext sc = new JavaSparkContext(conf);
+        JavaRDD<String> csvFile = sc.textFile("C:/Endeca/Project/sparkWCExample/src/main/resources/products.csv");
+        JavaRDD<String[]> csvData = csvFile.map(new LoadCSVJavaExample());
+        System.out.println("This prints the total count " + csvData.count());
+    }
+
+    public String[] call(String line) throws Exception {
+        CSVReader reader = new CSVReader(new StringReader(line));
+        return reader.readNext();
+    }
+}
