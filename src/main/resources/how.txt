@@ -1,2 +1,5 @@
 My nams is subha
 Hello
+
+
+spark-submit --class sparkWCExample.sparkWCExample.LoadCSVJavaExample --master local[1] /Endeca/Project/sparkWCExample/target/sparkWCExample-0.0.1-SNAPSHOT.jar /Endeca/Project/sparkWCExample/src/main/resources/products.csv
